@@ -11,13 +11,10 @@ import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 
 function Cards({ state }) {
-  state.weather.card.length !== 0 &&
-    console.log(state.weather.card.cityArr.map((elem) => elem.weather[0].icon));
-
   return (
     state.weather.card.length !== 0 && (
       <Row xs={1} md={2} className="g-3">
-        {state.weather.card.cityArr.map((e) => (
+        {state.weather.card.map((e) => (
           <Col>
             <Card>
               <Card.Body>

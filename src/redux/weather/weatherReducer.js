@@ -5,9 +5,15 @@ let cityArr = [];
 let cityWeatherData = (state = [], { type, payload }) => {
   switch (type) {
     case actionsTypes.ADD_CITY:
-      cityArr.push(...cityArr, payload);
+      cityArr = [...state, payload];
 
-      return { cityArr };
+      if (cityArr.length === 1) {
+        return [...cityArr];
+      } else
+        return [
+          ...state,
+          ...cityArr.filter((stat) => stat.name === payload.name),
+        ];
 
     default:
       return state;
