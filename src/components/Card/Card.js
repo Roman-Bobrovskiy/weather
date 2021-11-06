@@ -14,9 +14,9 @@ function Cards({ state }) {
   return (
     state.weather.card.length !== 0 && (
       <Row xs={1} md={2} className="g-3">
-        {state.weather.card.map((e) => (
-          <Col>
-            <Card>
+        <Col>
+          {state.weather.card.map((e) => (
+            <Card key={e.id}>
               <Card.Body>
                 <Card.Title>
                   <Card.Text>
@@ -49,8 +49,8 @@ function Cards({ state }) {
                 <Button variant="dark">update</Button>
               </Card.Body>
             </Card>
-          </Col>
-        ))}
+          ))}
+        </Col>
       </Row>
     )
   );
