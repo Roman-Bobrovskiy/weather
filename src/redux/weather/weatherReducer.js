@@ -1,10 +1,13 @@
 import actionsTypes from "./weatherActionsTypes";
 import { combineReducers } from "redux";
 
-let cityWeatherData = (state = "", { type, payload }) => {
+let cityWeatherData = (state = [], { type, payload }) => {
+  let cityArr = [];
   switch (type) {
     case actionsTypes.ADD_CITY:
-      return { ...state, data: payload };
+      cityArr = [...cityArr, payload];
+
+      return { ...state, cityArr };
 
     default:
       return state;
