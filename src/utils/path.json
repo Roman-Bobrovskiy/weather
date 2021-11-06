@@ -3,5 +3,6 @@
   "query": "?q=",
   "dailyCall": "https://api.openweathermap.org/data/2.5/onecall",
   "daily": "&exclude=daily",
-  "API_KEY": "&appid=f5fd14c3c58d99aff6e8b2e4c42bec1d"
+  "API_KEY": "&appid=f5fd14c3c58d99aff6e8b2e4c42bec1d",
+  "imgUrl": "http://openweathermap.org/img/wn/"
 }

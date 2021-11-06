@@ -2,7 +2,7 @@ import { createStore, combineReducers } from "redux";
 import weatherReducer from "./weather/weatherReducer";
 
 let rootReducer = combineReducers({
-  city: weatherReducer,
+  weather: weatherReducer,
 });
 
 let store = createStore(
