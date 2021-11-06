@@ -1,0 +1,24 @@
+.lustUpdate {
+  color: #eb6e4b;
+  font-size: 0.7rem;
+  margin-bottom: 1rem !important;
+}
+.cityCountry,
+.temp {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.feelsLike {
+  font-weight: 500;
+}
+
+.infoData {
+  list-style: none;
+  font-size: 0.9rem;
+  color: gray;
+  margin: 0 !important;
+}
+.row {
+  justify-content: center !important;
+}
