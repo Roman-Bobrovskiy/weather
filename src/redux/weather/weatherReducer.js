@@ -7,13 +7,16 @@ let cityWeatherData = (state = [], { type, payload }) => {
     case actionsTypes.ADD_CITY:
       cityArr = [...state, payload];
 
-      if (cityArr.length === 1) {
-        return [...cityArr];
-      } else
-        return [
-          ...state,
-          ...cityArr.filter((stat) => stat.name === payload.name),
-        ];
+      return cityArr.length === 1
+        ? [...cityArr]
+        : [...state, ...cityArr.filter((stat) => stat.name === payload.name)];
+
+    case actionsTypes.UPD_WEATHER:
+      let result = state.map((elem) => {
+        return elem.name === payload.name ? payload : elem;
+      });
+
+      return result;
 
     default:
       return state;

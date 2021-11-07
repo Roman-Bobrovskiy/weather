@@ -8,17 +8,25 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
+.card {
+  width: 15rem;
+  border: 1px solid #0dcaf0;
+  background: linear-gradient(0deg, rgb(255, 255, 255), #0dcaf085);
+  margin: 0.2rem;
+  cursor: pointer;
+}
 
 .feelsLike {
   font-weight: 500;
 }
-
-.infoData {
+.wrapInfoData {
   list-style: none;
+  padding: 0;
+}
+.infoData {
   font-size: 0.9rem;
   color: gray;
-  margin: 0 !important;
 }
 .row {
-  justify-content: center !important;
+  justify-content: center;
 }
