@@ -2,6 +2,7 @@ import actionsTypes from "./weatherActionsTypes";
 import { combineReducers } from "redux";
 
 let cityArr = [];
+
 let cityWeatherData = (state = [], { type, payload }) => {
   switch (type) {
     case actionsTypes.ADD_CITY:
@@ -23,4 +24,27 @@ let cityWeatherData = (state = [], { type, payload }) => {
   }
 };
 
-export default combineReducers({ card: cityWeatherData });
+let cityPageData = (state = [], { type, payload }) => {
+  switch (type) {
+    case actionsTypes.CITY_PAGE_WEATHER:
+      return payload;
+
+    default:
+      return state;
+  }
+};
+
+let loading = (state = false, { type, payload }) => {
+  switch (type) {
+    case actionsTypes.LOADING:
+      return payload;
+    default:
+      return state;
+  }
+};
+
+export default combineReducers({
+  card: cityWeatherData,
+  cityData: cityPageData,
+  loading: loading,
+});

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
 
-function SearchForm({ handleSubmit }) {
+function SearchForm({ handleSubmit, loading }) {
   const [text, setText] = useState("");
 
   let handleChange = (event) => {
@@ -11,8 +11,13 @@ function SearchForm({ handleSubmit }) {
   };
 
   let onhandleSubmit = (event) => {
+    loading(true);
     event.preventDefault();
-    requests.getData(text).then((elem) => handleSubmit({ ...elem.data }));
+    requests
+      .getData(text)
+      .then((elem) => handleSubmit({ ...elem.data }))
+      .catch((error) => error)
+      .finally(() => loading(false));
 
     setText("");
   };
@@ -34,6 +39,7 @@ function SearchForm({ handleSubmit }) {
 
 let mapDispatchToProps = {
   handleSubmit: actionsTypes.getCityData,
+  loading: actionsTypes.loading,
 };
 
 export default connect(null, mapDispatchToProps)(SearchForm);
