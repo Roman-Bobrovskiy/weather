@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import { Spinner } from "react-bootstrap";
@@ -17,7 +17,7 @@ import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 import styles from "./Card.module.css";
 
-function Cards({ state, handleUpdate, pageData }) {
+function Cards({ state, handleUpdate }) {
   const [check, setСheck] = useState("");
   const [update, setUpdate] = useState(false);
   const [error, setError] = useState(false);
@@ -34,18 +34,19 @@ function Cards({ state, handleUpdate, pageData }) {
       .finally(() => setUpdate(false));
   };
 
-  let handleChangeCity = (id, event) => {
-    event.preventDefault();
-    state.weather.card.map(
-      (obj) =>
-        id === obj.id &&
-        requests
-          .getCityPageData(obj.coord.lon, obj.coord.lat)
-          .then((elem) => pageData({ ...elem.data }))
-          .catch((error) => setError(error))
-          .finally(() => setUpdate(false))
-    );
-  };
+  // let handleChangeCity = (id, event) => {
+  //   setUpdate(true);
+  //   state.weather.card.map(
+  //     (obj) =>
+  //       id === obj.id &&
+  //       requests
+  //         .getCityPageData(obj.coord.lon, obj.coord.lat)
+  //         .then((elem) => pageData({ ...elem.data }))
+  //         .catch((error) => setError(error))
+  //         .finally(() => setUpdate(false))
+  //   );
+  //   event.preventDefault();
+  // };
 
   return (
     state.weather.card.length !== 0 && (
@@ -53,15 +54,20 @@ function Cards({ state, handleUpdate, pageData }) {
         <Container>
           <Row xs={1} sm={2} md={2} className={styles.row}>
             {state.weather.card.map((e) => (
-              <Link
-                onClick={(event) => handleChangeCity(e.id, event)}
+              <NavLink
                 key={e.id}
                 className={styles.navLink}
                 to={{
                   pathname: Routes.citypage,
+                  id: e.id,
+                  state: state,
                 }}
               >
-                <Card className={styles.card} key={e.id}>
+                <Card
+                  // onClick={(event) => handleChangeCity(e.id, event)}
+                  className={styles.card}
+                  key={e.id}
+                >
                   {state.weather.loading ? (
                     <Spinner animation="grow" variant="info" />
                   ) : (
@@ -122,7 +128,7 @@ function Cards({ state, handleUpdate, pageData }) {
                     </Card.Body>
                   )}
                 </Card>
-              </Link>
+              </NavLink>
             ))}
           </Row>
         </Container>
@@ -139,7 +145,6 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   handleUpdate: actionsTypes.updWeather,
-  pageData: actionsTypes.cityPageWeather,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cards);
