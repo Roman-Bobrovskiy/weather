@@ -19,8 +19,8 @@ import styles from "./Card.module.css";
 
 function Cards({ state, handleUpdate }) {
   const [check, setСheck] = useState("");
-  const [update, setUpdate] = useState(false);
   const [error, setError] = useState(false);
+  const [update, setUpdate] = useState(false);
 
   let handleChangeUpdate = (data, event) => {
     event.preventDefault();
@@ -33,20 +33,6 @@ function Cards({ state, handleUpdate }) {
       .catch((error) => setError(error))
       .finally(() => setUpdate(false));
   };
-
-  // let handleChangeCity = (id, event) => {
-  //   setUpdate(true);
-  //   state.weather.card.map(
-  //     (obj) =>
-  //       id === obj.id &&
-  //       requests
-  //         .getCityPageData(obj.coord.lon, obj.coord.lat)
-  //         .then((elem) => pageData({ ...elem.data }))
-  //         .catch((error) => setError(error))
-  //         .finally(() => setUpdate(false))
-  //   );
-  //   event.preventDefault();
-  // };
 
   return (
     state.weather.card.length !== 0 && (
@@ -63,11 +49,7 @@ function Cards({ state, handleUpdate }) {
                   state: state,
                 }}
               >
-                <Card
-                  // onClick={(event) => handleChangeCity(e.id, event)}
-                  className={styles.card}
-                  key={e.id}
-                >
+                <Card className={styles.card} key={e.id}>
                   {state.weather.loading ? (
                     <Spinner animation="grow" variant="info" />
                   ) : (
