@@ -18,7 +18,7 @@ import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 import styles from "./Card.module.css";
 
-function Cards({ state, handleUpdate, err, loading }) {
+function Cards({ state, handleUpdate, handleRemove, err, loading }) {
   const [check, setСheck] = useState("");
 
   let handleChangeUpdate = (data, event) => {
@@ -30,6 +30,11 @@ function Cards({ state, handleUpdate, err, loading }) {
       .then((elem) => handleUpdate({ ...elem.data }))
       .catch((error) => err(true))
       .finally(() => loading(false));
+  };
+
+  let handleChangeRemove = (data, event) => {
+    event.preventDefault();
+    handleRemove(data);
   };
 
   return (
@@ -105,6 +110,12 @@ function Cards({ state, handleUpdate, err, loading }) {
                           "update"
                         )}
                       </Button>
+                      <Button
+                        onClick={(event) => handleChangeRemove(e.name, event)}
+                        variant="outline-info"
+                      >
+                        remove
+                      </Button>
                     </Card.Body>
                   )}
                 </Card>
@@ -125,6 +136,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   handleUpdate: actionsTypes.updWeather,
+  handleRemove: actionsTypes.removeCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
 };

@@ -5,6 +5,11 @@ let getCityData = (data) => ({
   payload: data,
 });
 
+let removeCityData = (data) => ({
+  type: weatherActionsTypes.REMOVE_CITY,
+  payload: data,
+});
+
 let cityPageWeather = (data) => ({
   type: weatherActionsTypes.CITY_PAGE_WEATHER,
   payload: data,
@@ -27,6 +32,7 @@ let error = (data) => ({
 
 let actionsTypes = {
   getCityData,
+  removeCityData,
   updWeather,
   cityPageWeather,
   error,
