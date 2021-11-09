@@ -37,7 +37,6 @@ function Cards({ state, handleUpdate }) {
   };
 
   return (
-    console.log(state.weather.card),
     state.weather.card.length !== 0 && (
       <>
         <Container>

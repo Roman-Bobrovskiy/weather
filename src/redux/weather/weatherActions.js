@@ -5,13 +5,13 @@ let getCityData = (data) => ({
   payload: data,
 });
 
-let updWeather = (data) => ({
-  type: weatherActionsTypes.UPD_WEATHER,
+let cityPageWeather = (data) => ({
+  type: weatherActionsTypes.CITY_PAGE_WEATHER,
   payload: data,
 });
 
-let cityPageWeather = (data) => ({
-  type: weatherActionsTypes.CITY_PAGE_WEATHER,
+let updWeather = (data) => ({
+  type: weatherActionsTypes.UPD_WEATHER,
   payload: data,
 });
 
@@ -20,10 +20,16 @@ let loading = (data) => ({
   payload: data,
 });
 
+let error = (data) => ({
+  type: weatherActionsTypes.ERROR,
+  payload: data,
+});
+
 let actionsTypes = {
   getCityData,
   updWeather,
   cityPageWeather,
+  error,
   loading,
 };
 

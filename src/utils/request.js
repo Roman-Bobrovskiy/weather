@@ -8,7 +8,6 @@ let getData = (cityName) => {
 };
 
 let getCityPageData = (lon, lat) => {
-  console.log("getCityPageData");
   return axios.get(
     request.dailyCall +
       "lat=" +

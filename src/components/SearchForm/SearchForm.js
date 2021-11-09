@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
+import errors from "../../utils/errors.json";
 
-function SearchForm({ handleSubmit, loading }) {
+function SearchForm({ handleSubmit, err, loading }) {
   const [text, setText] = useState("");
 
   let handleChange = (event) => {
@@ -16,7 +17,7 @@ function SearchForm({ handleSubmit, loading }) {
     requests
       .getData(text)
       .then((elem) => handleSubmit({ ...elem.data }))
-      .catch((error) => error)
+      .catch((error) => err(errors.wrongCityName))
       .finally(() => loading(false));
 
     setText("");
@@ -39,6 +40,7 @@ function SearchForm({ handleSubmit, loading }) {
 
 let mapDispatchToProps = {
   handleSubmit: actionsTypes.getCityData,
+  err: actionsTypes.error,
   loading: actionsTypes.loading,
 };
 

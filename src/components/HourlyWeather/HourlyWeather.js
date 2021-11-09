@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
 import timeCounter from "../../utils/getTime";
+import { v4 as uuidv4 } from "uuid";
 
 import Card from "react-bootstrap/Card";
 import Nav from "react-bootstrap/Nav";
@@ -11,28 +12,24 @@ import Row from "react-bootstrap/Row";
 
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 
-function CityPage({ id, state, pageWeather }) {
-  const [error, setError] = useState(false);
-  const [loadingCityPage, setLoadingCityPage] = useState(false);
-
+function CityPage({ id, cityData, card, pageWeather, err, loading }) {
   useEffect(() => {
-    state.weather.card.map(
+    card.map(
       (obj) =>
         id === obj.id &&
-        state.weather.cityData.length === 0 &&
+        cityData.length === 0 &&
         requests
           .getCityPageData(obj.coord.lon, obj.coord.lat)
+          .then(loading(true))
           .then((elem) => pageWeather({ ...elem.data, name: obj.name }))
-          .catch((error) => setError(error))
-          .finally(() => setLoadingCityPage(false))
+          .catch((error) => err(error.message))
+          .finally(() => loading(false))
     );
-  }, [pageWeather, id, state.weather.card, state.weather.cityData.length]);
+  }, [pageWeather, id, card, cityData.length, err, loading]);
 
   return (
     <>
-      <header>
-        {state.weather.cityData.length !== 0 && state.weather.cityData.name}{" "}
-      </header>
+      <header>{cityData.length !== 0 && cityData.name} </header>
       <main>
         <div>
           <Card>
@@ -52,9 +49,9 @@ function CityPage({ id, state, pageWeather }) {
                   </Nav.Item>
                 </Nav>
               </Card.Header> */}
-              {state.weather.cityData.length !== 0 &&
-                state.weather.cityData.hourly.map((elem) => (
-                  <Card.Body>
+              {cityData.length !== 0 &&
+                cityData.hourly.map((elem) => (
+                  <Card.Body key={uuidv4()}>
                     <ListGroup>
                       <ListGroup.Item>
                         {timeCounter.time(elem.dt)}
@@ -74,13 +71,13 @@ function CityPage({ id, state, pageWeather }) {
 }
 
 let mapStateToProps = (state) => {
-  return {
-    state,
-  };
+  return state.weather;
 };
 
 let mapDispatchToProps = {
   pageWeather: actionsTypes.cityPageWeather,
+  err: actionsTypes.error,
+  loading: actionsTypes.loading,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityPage);
