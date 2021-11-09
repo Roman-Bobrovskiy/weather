@@ -18,23 +18,24 @@ import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 import styles from "./Card.module.css";
 
-function Cards({ state, handleUpdate, handleRemove, err, loading }) {
+function Cards({ state, handleUpdate, handleRemove, err }) {
   const [check, setСheck] = useState("");
+  const [update, setUpdate] = useState(false);
 
-  let handleChangeUpdate = (data, event) => {
+  let handleChangeUpdate = (city, event) => {
+    setUpdate(true);
     event.preventDefault();
-    setСheck(data);
+    setСheck(city);
     requests
-      .getData(data)
-      .then(loading(true))
+      .getData(city)
       .then((elem) => handleUpdate({ ...elem.data }))
       .catch((error) => err(true))
-      .finally(() => loading(false));
+      .finally(() => setUpdate(false));
   };
 
-  let handleChangeRemove = (data, event) => {
+  let handleChangeRemove = (city, event) => {
     event.preventDefault();
-    handleRemove(data);
+    handleRemove(city);
   };
 
   return (
@@ -98,7 +99,7 @@ function Cards({ state, handleUpdate, handleRemove, err, loading }) {
                         onClick={(event) => handleChangeUpdate(e.name, event)}
                         variant="outline-info"
                       >
-                        {loading && e.name === check ? (
+                        {update && e.name === check ? (
                           <Spinner
                             as="span"
                             animation="border"
