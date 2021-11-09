@@ -9,6 +9,7 @@ let updWeather = (data) => ({
   type: weatherActionsTypes.UPD_WEATHER,
   payload: data,
 });
+
 let cityPageWeather = (data) => ({
   type: weatherActionsTypes.CITY_PAGE_WEATHER,
   payload: data,

@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
-import { Spinner } from "react-bootstrap";
+
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Spinner } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
-import Routes from "../Routes";
 
+import Routes from "../Routes";
 import requests from "../../utils/request";
 import url from "../../utils/path.json";
 import timeCounter from "../../utils/getTime";
@@ -23,6 +24,7 @@ function Cards({ state, handleUpdate }) {
   const [update, setUpdate] = useState(false);
 
   let handleChangeUpdate = (data, event) => {
+    console.log("updBtn");
     event.preventDefault();
     setСheck(data);
     setUpdate(true);
@@ -35,6 +37,7 @@ function Cards({ state, handleUpdate }) {
   };
 
   return (
+    console.log(state.weather.card),
     state.weather.card.length !== 0 && (
       <>
         <Container>

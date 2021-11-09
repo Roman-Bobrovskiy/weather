@@ -1,6 +1,8 @@
 import actionsTypes from "./weatherActionsTypes";
 import { combineReducers } from "redux";
 
+const initialState = { card: [], cityData: [], loading: false };
+
 let cityArr = [];
 
 let cityWeatherData = (state = [], { type, payload }) => {
@@ -13,6 +15,7 @@ let cityWeatherData = (state = [], { type, payload }) => {
         : [...state, ...cityArr.filter((stat) => stat.name === payload.name)];
 
     case actionsTypes.UPD_WEATHER:
+      console.log("UPD_WEATHER");
       let result = state.map((elem) => {
         return elem.name === payload.name ? payload : elem;
       });
@@ -25,6 +28,7 @@ let cityWeatherData = (state = [], { type, payload }) => {
 };
 
 let cityPageData = (state = [], { type, payload }) => {
+  console.log("cityPageData");
   switch (type) {
     case actionsTypes.CITY_PAGE_WEATHER:
       return payload;
@@ -34,7 +38,7 @@ let cityPageData = (state = [], { type, payload }) => {
   }
 };
 
-let loading = (state = false, { type, payload }) => {
+let loading = (state = initialState, { type, payload }) => {
   switch (type) {
     case actionsTypes.LOADING:
       return payload;
