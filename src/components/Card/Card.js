@@ -18,22 +18,18 @@ import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
 import styles from "./Card.module.css";
 
-function Cards({ state, handleUpdate }) {
+function Cards({ state, handleUpdate, err, loading }) {
   const [check, setСheck] = useState("");
-  const [error, setError] = useState(false);
-  const [update, setUpdate] = useState(false);
 
   let handleChangeUpdate = (data, event) => {
-    console.log("updBtn");
     event.preventDefault();
     setСheck(data);
-    setUpdate(true);
-
     requests
       .getData(data)
+      .then(loading(true))
       .then((elem) => handleUpdate({ ...elem.data }))
-      .catch((error) => setError(error))
-      .finally(() => setUpdate(false));
+      .catch((error) => err(true))
+      .finally(() => loading(false));
   };
 
   return (
@@ -97,7 +93,7 @@ function Cards({ state, handleUpdate }) {
                         onClick={(event) => handleChangeUpdate(e.name, event)}
                         variant="outline-info"
                       >
-                        {update && e.name === check ? (
+                        {loading && e.name === check ? (
                           <Spinner
                             as="span"
                             animation="border"
@@ -129,6 +125,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   handleUpdate: actionsTypes.updWeather,
+  err: actionsTypes.error,
+  loading: actionsTypes.loading,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cards);

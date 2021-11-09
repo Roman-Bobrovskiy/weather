@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
-import errors from "../../utils/errors.json";
+import ModalWindow from "../Modal/ModalWindow";
 
 function SearchForm({ handleSubmit, err, loading }) {
   const [text, setText] = useState("");
@@ -17,24 +17,27 @@ function SearchForm({ handleSubmit, err, loading }) {
     requests
       .getData(text)
       .then((elem) => handleSubmit({ ...elem.data }))
-      .catch((error) => err(errors.wrongCityName))
+      .catch((error) => err(true))
       .finally(() => loading(false));
 
     setText("");
   };
 
   return (
-    <form onSubmit={onhandleSubmit}>
-      <label>
-        <input
-          type="text"
-          value={text}
-          onChange={handleChange}
-          placeholder="Search city"
-        ></input>
-      </label>
-      <button type="submit">Search</button>
-    </form>
+    <>
+      <ModalWindow />
+      <form onSubmit={onhandleSubmit}>
+        <label>
+          <input
+            type="text"
+            value={text}
+            onChange={handleChange}
+            placeholder="Search city"
+          ></input>
+        </label>
+        <button type="submit">Search</button>
+      </form>
+    </>
   );
 }
 
