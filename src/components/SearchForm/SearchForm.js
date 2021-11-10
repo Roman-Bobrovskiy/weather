@@ -10,7 +10,9 @@ function SearchForm({ handleSubmit, err, loading }) {
   const [text, setText] = useState("");
 
   useEffect(() => {
-    let localStorageData = JSON.parse(window.localStorage.getItem("city"));
+    let localStorageData =
+      JSON.parse(window.localStorage.getItem("city")) || [];
+
     localStorageData.map((elem) =>
       requests
         .getData(elem.city)
@@ -25,7 +27,7 @@ function SearchForm({ handleSubmit, err, loading }) {
   };
 
   let onhandleSubmit = (event) => {
-    localStorage(text);
+    localStorage.add(text);
     loading(true);
     event.preventDefault();
     requests

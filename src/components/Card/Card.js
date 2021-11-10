@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
+import localStorage from "../../utils/localStorage";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Spinner } from "react-bootstrap";
@@ -35,6 +36,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
 
   let handleChangeRemove = (city, event) => {
     event.preventDefault();
+    localStorage.remove(city);
     handleRemove(city);
   };
 
