@@ -1,5 +1,5 @@
 let hScroll = (e) => {
-  document.getElementById("scroll_container").scrollLeft += e.deltaY;
+  e.currentTarget.scrollLeft += e.deltaY;
 };
 
 export default hScroll;

@@ -29,6 +29,8 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
     );
   }, [pageWeather, id, card, cityData.length, err, loading]);
 
+  useEffect(() => pageWeather([]), []);
+
   return (
     <>
       <div className={styles.wrapHourlyWeather}>
