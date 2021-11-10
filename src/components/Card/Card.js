@@ -29,7 +29,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
     setСheck(city);
     requests
       .getData(city)
-      .then((elem) => handleUpdate({ ...elem.data }))
+      .then((obj) => handleUpdate({ ...obj.data }))
       .catch((error) => err(true))
       .finally(() => setUpdate(false));
   };
@@ -70,6 +70,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
                         <Card.Img
                           variant="center"
                           src={url.imgUrl + e.weather[0].icon + ".png"}
+                          alt={e.weather[0].main}
                         />
                         {getTempInCelsius(e.main.temp)}°C
                       </Card.Text>

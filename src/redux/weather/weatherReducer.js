@@ -21,8 +21,8 @@ let cityWeatherData = (state = initialState.card, { type, payload }) => {
       return [...state.filter((stat) => stat.name !== payload)];
 
     case actionsTypes.UPD_WEATHER:
-      let result = state.map((elem) => {
-        return elem.name === payload.name ? payload : elem;
+      let result = state.map((obj) => {
+        return obj.name === payload.name ? payload : obj;
       });
 
       return result;

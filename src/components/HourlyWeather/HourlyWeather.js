@@ -3,14 +3,12 @@ import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
 import timeCounter from "../../utils/getTime";
+import wind from "../../utils/getWindDirection";
+import url from "../../utils/path.json";
 import { v4 as uuidv4 } from "uuid";
 
-import Card from "react-bootstrap/Card";
-import Nav from "react-bootstrap/Nav";
-import ListGroup from "react-bootstrap/ListGroup";
-import Row from "react-bootstrap/Row";
-
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
+import styles from "./HourlyWeather.module.css";
 
 function CityPage({ id, cityData, card, pageWeather, err, loading }) {
   useEffect(() => {
@@ -29,43 +27,39 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
 
   return (
     <>
-      <header>{cityData.length !== 0 && cityData.name} </header>
-      <main>
-        <div>
-          <Card>
-            <Row xs={7} sm={7} md={7}>
-              {/* <Card.Header>
-                <Nav variant="tabs" defaultActiveKey="#first">
-                  <Nav.Item>
-                    <Nav.Link href="#first">Active</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="#link">Link</Nav.Link>
-                  </Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link href="#disabled" disabled>
-                      Disabled
-                    </Nav.Link>
-                  </Nav.Item>
-                </Nav>
-              </Card.Header> */}
-              {cityData.length !== 0 &&
-                cityData.hourly.map((elem) => (
-                  <Card.Body key={uuidv4()}>
-                    <ListGroup>
-                      <ListGroup.Item>
-                        {timeCounter.time(elem.dt)}
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        {getTempInCelsius(elem.temp)}
-                      </ListGroup.Item>
-                    </ListGroup>
-                  </Card.Body>
-                ))}
-            </Row>
-          </Card>
+      <div className={styles.wrapHourlyWeather}>
+        <span className={styles.cityName}>
+          {cityData.length !== 0 && cityData.name}{" "}
+        </span>
+
+        <div className={styles.wrapCards}>
+          {cityData.length !== 0 &&
+            cityData.hourly.map((elem) => (
+              <ul key={uuidv4()} className={styles.hourlyWeatherCard}>
+                <li className={styles.cardItem}>{timeCounter.time(elem.dt)}</li>
+                <li className={styles.cardItem}>
+                  <img
+                    src={url.imgUrl + elem.weather[0].icon + ".png"}
+                    alt={elem.weather[0].main}
+                  ></img>
+                </li>
+                <li className={styles.cardItem}>
+                  {getTempInCelsius(elem.temp)} °C
+                </li>
+                <li className={styles.cardItem}>
+                  Feels like {getTempInCelsius(elem.feels_like)} °C
+                </li>
+                <li className={styles.cardItem}>
+                  {wind.directionName(elem.wind_deg)}
+                  {wind.speed(elem.wind_speed)} m/s
+                </li>
+                <li className={styles.cardItem}>
+                  gusts to {wind.speed(elem.wind_gust)} m/s
+                </li>
+              </ul>
+            ))}
         </div>
-      </main>
+      </div>
     </>
   );
 }
