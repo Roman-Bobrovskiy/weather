@@ -1,13 +1,17 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
-import requests from "../../utils/request";
-import timeCounter from "../../utils/getTime";
-import wind from "../../utils/getWindDirection";
-import url from "../../utils/path.json";
-import { v4 as uuidv4 } from "uuid";
 
+import requests from "../../utils/request";
+import url from "../../utils/path.json";
+
+import { v4 as uuidv4 } from "uuid";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
+import wind from "../../utils/getWindDirection";
+import timeCounter from "../../utils/getTime";
+import Arrow from "../Arrow/Arrow";
+import hScroll from "../../utils/hScroll";
+
 import styles from "./HourlyWeather.module.css";
 
 function CityPage({ id, cityData, card, pageWeather, err, loading }) {
@@ -32,7 +36,11 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
           {cityData.length !== 0 && cityData.name}{" "}
         </span>
 
-        <div className={styles.wrapCards}>
+        <div
+          onWheel={(e) => hScroll(e)}
+          id="scroll_container"
+          className={styles.wrapCards}
+        >
           {cityData.length !== 0 &&
             cityData.hourly.map((elem) => (
               <ul key={uuidv4()} className={styles.hourlyWeatherCard}>
@@ -50,7 +58,7 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
                   Feels like {getTempInCelsius(elem.feels_like)} °C
                 </li>
                 <li className={styles.cardItem}>
-                  {wind.directionName(elem.wind_deg)}
+                  <Arrow deg={elem.wind_deg} />
                   {wind.speed(elem.wind_speed)} m/s
                 </li>
                 <li className={styles.cardItem}>

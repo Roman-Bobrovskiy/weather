@@ -17,6 +17,7 @@ import url from "../../utils/path.json";
 import timeCounter from "../../utils/getTime";
 import wind from "../../utils/getWindDirection";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
+import Arrow from "../Arrow/Arrow";
 import styles from "./Card.module.css";
 
 function Cards({ state, handleUpdate, handleRemove, err }) {
@@ -81,7 +82,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
                       <ul className={styles.wrapInfoData}>
                         <li className={styles.infoData}>
                           {wind.speed(e.wind.speed)} m/s{" "}
-                          {wind.directionName(e.wind.deg)}{" "}
+                          <Arrow deg={e.wind.deg} />
                           {wind.direction(e.wind.deg)}
                         </li>
                         <li className={styles.infoData}>
