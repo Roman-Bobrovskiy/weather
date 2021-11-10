@@ -2,17 +2,15 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
-import localStorage from "../../utils/localStorage";
 
 import ModalWindow from "../Modal/ModalWindow";
 
-function SearchForm({ handleSubmit, err, loading }) {
+function SearchForm({ state, handleSubmit, err, loading }) {
   const [text, setText] = useState("");
 
   useEffect(() => {
     let localStorageData =
       JSON.parse(window.localStorage.getItem("city")) || [];
-
     localStorageData.map((elem) =>
       requests
         .getData(elem.city)
@@ -27,9 +25,9 @@ function SearchForm({ handleSubmit, err, loading }) {
   };
 
   let onhandleSubmit = (event) => {
-    localStorage.add(text);
     loading(true);
     event.preventDefault();
+
     requests
       .getData(text)
       .then((elem) => handleSubmit({ ...elem.data }))
@@ -57,10 +55,16 @@ function SearchForm({ handleSubmit, err, loading }) {
   );
 }
 
+let mapStateToProps = (state) => {
+  return {
+    state,
+  };
+};
+
 let mapDispatchToProps = {
   handleSubmit: actionsTypes.getCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
 };
 
-export default connect(null, mapDispatchToProps)(SearchForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

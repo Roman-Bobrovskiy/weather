@@ -1,5 +1,6 @@
 import actionsTypes from "./weatherActionsTypes";
 import { combineReducers } from "redux";
+import localStorage from "../../utils/localStorage";
 
 const initialState = {
   card: [],
@@ -8,16 +9,13 @@ const initialState = {
   loading: false,
 };
 
-let cityArr = [];
-
 let cityWeatherData = (state = initialState.card, { type, payload }) => {
   switch (type) {
     case actionsTypes.ADD_CITY:
-      cityArr = [...state, payload];
+      localStorage.add(payload.name);
 
-      return cityArr.length === 1
-        ? [...cityArr]
-        : [...state, ...cityArr.filter((stat) => stat.name === payload.name)];
+      return [...state.filter((obj) => obj.name !== payload.name), payload];
+    // return [...state, payload];
 
     case actionsTypes.REMOVE_CITY:
       return [...state.filter((stat) => stat.name !== payload)];
