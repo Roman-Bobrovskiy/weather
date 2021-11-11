@@ -3,7 +3,6 @@ import React from "react";
 export default function TempBox({ temp }) {
   let liStyle;
   liStyle = {
-    position: "relative",
     width: "100%",
   };
 
@@ -11,22 +10,26 @@ export default function TempBox({ temp }) {
   temp < 10 && temp > 0
     ? (spanStyle = {
         position: "relative",
-        display: "inline-block",
         height: "max-content",
-        bottom: `${temp}px`,
+        bottom: `${temp / 1.7}px`,
         left: "0",
         border: "1px solid black",
         display: "flex",
-        width: "100%",
+        background:
+          temp > 0
+            ? `rgba(255, 0, 0, 0.0${temp}`
+            : `rgba(0, 0, 255, 0.${-temp}`,
       })
     : (spanStyle = {
         position: "relative",
-        display: "inline-block",
         height: "max-content",
-        bottom: `${temp}px`,
-        border: "1px solid black",
+        bottom: `${temp / 1.7}px`,
+        border: `1px solid black`,
         display: "flex",
-        width: "100%",
+        background:
+          temp > 0
+            ? `rgba(255, 0, 0, 0.${temp}`
+            : `rgba(0, 0, 255, ${-temp / 10}`,
       });
 
   return (

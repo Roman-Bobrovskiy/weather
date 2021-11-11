@@ -22,9 +22,14 @@ li {
 }
 
 .boxTempCardItem {
-  height: 50px;
-  display: flex;
+  height: 60px;
+  display: grid;
   align-items: center;
+}
+
+.itemTemp {
+  width: 100%;
+  display: grid;
 }
 span {
   justify-content: center;
@@ -34,6 +39,7 @@ span {
   width: max-content;
   margin: 0 auto;
   padding: 0 0.5rem;
+  display: grid;
 }
 
 .arrow {
