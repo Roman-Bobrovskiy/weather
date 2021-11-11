@@ -10,6 +10,7 @@ import { getTempInCelsius } from "../../utils/getTempInCelsius";
 import wind from "../../utils/getWindDirection";
 import timeCounter from "../../utils/getTime";
 import Arrow from "../Arrow/Arrow";
+import TempBox from "../../components/TempBox/TempBox";
 import hScroll from "../../utils/hScroll";
 
 import styles from "./HourlyWeather.module.css";
@@ -29,7 +30,7 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
     );
   }, [pageWeather, id, card, cityData.length, err, loading]);
 
-  useEffect(() => pageWeather([]), []);
+  useEffect(() => pageWeather([]), [pageWeather]);
 
   return (
     <>
@@ -53,9 +54,11 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
                     alt={elem.weather[0].main}
                   ></img>
                 </li>
-                <li className={styles.cardItem}>
+                {/* <li className={styles.cardItem}>
                   {getTempInCelsius(elem.temp)} °C
-                </li>
+                </li> */}
+                <TempBox temp={getTempInCelsius(elem.temp)} />
+
                 <li className={styles.cardItem}>
                   Feels like {getTempInCelsius(elem.feels_like)} °C
                 </li>

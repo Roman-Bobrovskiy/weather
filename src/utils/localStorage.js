@@ -1,6 +1,5 @@
 let add = (city) => {
   let cityArr = JSON.parse(window.localStorage.getItem("city")) || [];
-
   cityArr.length === 0
     ? (cityArr = [{ city }])
     : (cityArr = [...cityArr.filter((el) => el.city !== city), { city }]);

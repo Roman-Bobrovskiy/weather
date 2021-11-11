@@ -27,7 +27,6 @@ function SearchForm({ state, handleSubmit, err, loading }) {
   let onhandleSubmit = (event) => {
     loading(true);
     event.preventDefault();
-
     requests
       .getData(text)
       .then((elem) => handleSubmit({ ...elem.data }))

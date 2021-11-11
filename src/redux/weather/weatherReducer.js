@@ -15,6 +15,7 @@ let cityWeatherData = (state = initialState.card, { type, payload }) => {
       localStorage.add(payload.name);
 
       return [...state.filter((obj) => obj.name !== payload.name), payload];
+
     // return [...state, payload];
 
     case actionsTypes.REMOVE_CITY:

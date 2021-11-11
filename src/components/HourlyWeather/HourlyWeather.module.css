@@ -2,6 +2,9 @@
   display: flex;
   flex-direction: column;
 }
+li {
+  align-items: center;
+}
 
 .wrapCards {
   display: flex;
@@ -9,7 +12,7 @@
   max-width: 100vw;
   overflow: auto;
   cursor: col-resize;
-  z-index: 10000;
+  text-align: center;
 }
 
 .hourlyWeatherCard {
@@ -17,13 +20,11 @@
   list-style-type: none;
   padding: 0;
   margin: 0.5rem;
-  z-index: -100;
 }
 
 .cardItem {
   width: max-content;
   margin: 0 auto;
-  z-index: -100;
 }
 
 .arrow {
