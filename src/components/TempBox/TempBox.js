@@ -3,28 +3,35 @@ import React from "react";
 export default function TempBox({ temp }) {
   let liStyle;
   liStyle = {
-    height: `3rem`,
-    display: "flex",
+    position: "relative",
+    width: "100%",
   };
 
   let spanStyle;
   temp < 10 && temp > 0
     ? (spanStyle = {
+        position: "relative",
+        display: "inline-block",
         height: "max-content",
-        margin: `  ${0} ${0} 0.${temp}rem `,
+        bottom: `${temp}px`,
+        left: "0",
         border: "1px solid black",
-        flex: "1 0",
+        display: "flex",
+        width: "100%",
       })
     : (spanStyle = {
+        position: "relative",
+        display: "inline-block",
         height: "max-content",
-        margin: `  ${0} ${0} ${temp / 10}rem`,
+        bottom: `${temp}px`,
         border: "1px solid black",
-        flex: "1 0",
+        display: "flex",
+        width: "100%",
       });
 
   return (
-    <li style={liStyle}>
+    <div style={liStyle}>
       <span style={spanStyle}> {temp} °C </span>
-    </li>
+    </div>
   );
 }

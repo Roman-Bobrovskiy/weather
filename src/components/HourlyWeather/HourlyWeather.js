@@ -57,7 +57,9 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
                 {/* <li className={styles.cardItem}>
                   {getTempInCelsius(elem.temp)} °C
                 </li> */}
-                <TempBox temp={getTempInCelsius(elem.temp)} />
+                <li className={styles.boxTempCardItem}>
+                  <TempBox temp={getTempInCelsius(elem.temp)} />
+                </li>
 
                 <li className={styles.cardItem}>
                   Feels like {getTempInCelsius(elem.feels_like)} °C

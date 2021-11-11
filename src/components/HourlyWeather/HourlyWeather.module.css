@@ -19,12 +19,21 @@ li {
   display: block;
   list-style-type: none;
   padding: 0;
-  margin: 0.5rem;
+}
+
+.boxTempCardItem {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+span {
+  justify-content: center;
 }
 
 .cardItem {
   width: max-content;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
 .arrow {
