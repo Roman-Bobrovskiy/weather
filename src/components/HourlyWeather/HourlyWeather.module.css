@@ -5,6 +5,9 @@
 li {
   align-items: center;
 }
+svg {
+  margin: 0 auto;
+}
 
 .wrapCards {
   display: flex;
@@ -40,8 +43,4 @@ span {
   margin: 0 auto;
   padding: 0 0.5rem;
   display: grid;
-}
-
-.arrow {
-  transform: rotate(90deg);
 }
