@@ -11,14 +11,8 @@ function SearchForm({ state, handleSubmit, err, loading }) {
   useEffect(() => {
     let localStorageData =
       JSON.parse(window.localStorage.getItem("city")) || [];
-    localStorageData.map((elem) =>
-      requests
-        .getData(elem.city)
-        .then((elem) => handleSubmit({ ...elem.data }))
-        .catch((error) => err(true))
-        .finally(() => loading(false))
-    );
-  }, [err, handleSubmit, loading]);
+    localStorageData.map((obj) => handleSubmit({ ...obj }));
+  }, [handleSubmit]);
 
   let handleChange = (event) => {
     setText(event.target.value);
