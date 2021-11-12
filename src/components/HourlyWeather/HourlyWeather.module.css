@@ -2,12 +2,6 @@
   display: flex;
   flex-direction: column;
 }
-li {
-  align-items: center;
-}
-/* .svgArrow {
-  margin: 0 auto;
-} */
 
 .wrapCards {
   display: flex;

@@ -1,0 +1,16 @@
+.wrapFooter {
+  display: grid;
+  width: 100%;
+  position: fixed;
+  height: 4vh;
+  bottom: 0;
+  align-items: center;
+  justify-content: center;
+  background: antiquewhite;
+  background-size: cover;
+  background-image: url(../../assets/background_current-weather-cloudy_380x750.jpg);
+}
+.footerText {
+  color: white;
+  margin: 0;
+}

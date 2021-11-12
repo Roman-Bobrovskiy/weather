@@ -12,10 +12,11 @@ import timeCounter from "../../utils/getTime";
 import Arrow from "../Arrow/Arrow";
 import TempBox from "../../components/TempBox/TempBox";
 import scroll from "../../utils/hScroll";
+import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
 import styles from "./HourlyWeather.module.css";
 
-function CityPage({ id, cityData, card, pageWeather, err, loading }) {
+function CityPageHorly({ id, cityData, card, pageWeather, err, loading }) {
   useEffect(() => {
     card.map(
       (obj) =>
@@ -35,10 +36,6 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
   return (
     <>
       <div className={styles.wrapHourlyWeather}>
-        <span className={styles.cityName}>
-          {cityData.length !== 0 && cityData.name}{" "}
-        </span>
-
         <div
           onWheel={(e) => scroll.hScroll(e)}
           id="scroll_container"
@@ -87,4 +84,4 @@ let mapDispatchToProps = {
   loading: actionsTypes.loading,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CityPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CityPageHorly);

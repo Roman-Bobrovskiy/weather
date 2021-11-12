@@ -32,10 +32,23 @@ let time = (data) => {
   return result;
 };
 
+let lengthOfTheDay = (sunrise, sunset) => {
+  let different = new Date(sunset) - new Date(sunrise);
+  let Data = new Date(different * 1000);
+
+  let Hour = Data.getHours() - 3;
+  let Minutes = Data.getMinutes() - 3;
+
+  let result = `${Hour}:${Minutes < 10 ? "0" + Minutes : Minutes}`;
+
+  return result;
+};
+
 let timeCounter = {
   timeLastUpdate,
   timeWeekDay,
   time,
+  lengthOfTheDay,
 };
 
 export default timeCounter;

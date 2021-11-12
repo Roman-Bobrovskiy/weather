@@ -1,6 +1,7 @@
 import React from "react";
 import SearchForm from "../components/SearchForm/SearchForm";
 import Card from "../components/Card/Card";
+import Footer from "../components/Footer/Footer";
 
 import styles from "./Home.module.css";
 
@@ -17,11 +18,7 @@ export default function Home() {
           <Card />
         </div>
       </main>
-      <footer>
-        <div className={styles.wrapFooter}>
-          <p className={styles.footerText}>Powered by React/Redux</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
