@@ -1,19 +1,22 @@
+.cardContainer {
+  padding-top: 9vh;
+}
 .navLink {
-  color: black;
+  color: #ffffffc4;
   text-decoration: none;
   width: fit-content;
   padding: 0;
 }
 
 .navLink:hover {
-  color: black;
+  color: white;
   transform: scale(1.01);
 }
 
 .lustUpdate {
-  color: #eb6e4b;
+  color: #ff3800;
   font-size: 0.7rem;
-  margin-bottom: 1rem !important;
+  margin-bottom: 0.3rem !important;
 }
 .cityCountry,
 .temp {
@@ -22,8 +25,8 @@
 }
 .card {
   width: 15rem;
-  border: 1px solid #0dcaf0;
-  background: linear-gradient(0deg, rgb(255, 255, 255), #0dcaf085);
+  border-radius: 0.5rem;
+  background: rgba(0, 0, 0, 0.05);
   margin: 0.2rem;
 }
 
@@ -36,8 +39,31 @@
 }
 .infoData {
   font-size: 0.9rem;
-  color: gray;
+}
+
+.infoDataSun {
+  margin-top: 0.3rem;
+  vertical-align: middle;
+  display: flex;
 }
 .row {
   justify-content: center;
+}
+
+.wrapBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  margin-bottom: 0.3rem;
+}
+.cardBtn {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+.cardBtn:hover {
+  color: rgb(201, 201, 201);
 }

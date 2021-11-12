@@ -3,6 +3,7 @@ import React from "react";
 export default function Arrow({ deg }) {
   return (
     <svg
+      className="svgArrow"
       xmlns="http://www.w3.org/2000/svg"
       width="20px"
       height="20px"

@@ -11,7 +11,7 @@ import wind from "../../utils/getWindDirection";
 import timeCounter from "../../utils/getTime";
 import Arrow from "../Arrow/Arrow";
 import TempBox from "../../components/TempBox/TempBox";
-import hScroll from "../../utils/hScroll";
+import scroll from "../../utils/hScroll";
 
 import styles from "./HourlyWeather.module.css";
 
@@ -40,14 +40,16 @@ function CityPage({ id, cityData, card, pageWeather, err, loading }) {
         </span>
 
         <div
-          onWheel={(e) => hScroll(e)}
+          onWheel={(e) => scroll.hScroll(e)}
           id="scroll_container"
           className={styles.wrapCards}
         >
           {cityData.length !== 0 &&
             cityData.hourly.map((elem) => (
               <ul key={uuidv4()} className={styles.hourlyWeatherCard}>
-                <li className={styles.cardItem}>{timeCounter.time(elem.dt)}</li>
+                <li className={styles.cardItem}>
+                  {timeCounter.timeWeekDay(elem.dt)}
+                </li>
                 <li className={styles.cardItem}>
                   <img
                     src={url.imgUrl + elem.weather[0].icon + ".png"}

@@ -13,6 +13,16 @@ let timeLastUpdate = (data) => {
   return result;
 };
 
+let timeWeekDay = (data) => {
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let Data = new Date(data * 1000);
+  let Day = Data.getDay();
+  let Hour = Data.getHours();
+  let Minutes = Data.getMinutes();
+  let result = `${days[Day]} ${Hour}:${Minutes < 10 ? "0" + Minutes : Minutes}`;
+  return result;
+};
+
 let time = (data) => {
   let Data = new Date(data * 1000);
   let Hour = Data.getHours();
@@ -24,6 +34,7 @@ let time = (data) => {
 
 let timeCounter = {
   timeLastUpdate,
+  timeWeekDay,
   time,
 };
 

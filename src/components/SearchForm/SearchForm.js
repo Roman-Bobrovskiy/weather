@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
+import styles from "./SearchForm.module.css";
 
 import ModalWindow from "../Modal/ModalWindow";
 
@@ -33,16 +34,18 @@ function SearchForm({ state, handleSubmit, err, loading }) {
   return (
     <>
       <ModalWindow />
-      <form onSubmit={onhandleSubmit}>
-        <label>
-          <input
-            type="text"
-            value={text}
-            onChange={handleChange}
-            placeholder="Search city"
-          ></input>
-        </label>
-        <button type="submit">Search</button>
+      <form className={styles.searchFrom} onSubmit={onhandleSubmit}>
+        <input
+          className={styles.searchInput}
+          type="text"
+          value={text}
+          onChange={handleChange}
+          placeholder="Search city"
+        ></input>
+
+        <button className={styles.searchBtn} type="submit">
+          Search
+        </button>
       </form>
     </>
   );

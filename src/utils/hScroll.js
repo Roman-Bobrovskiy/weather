@@ -2,8 +2,10 @@ let hScroll = (e) => {
   e.currentTarget.scrollLeft += e.deltaY;
 };
 
-export default hScroll;
-
+let scroll = {
+  hScroll,
+};
+export default scroll;
 // let hScroll = (e) => {
 //   console.log(e);
 //   const ele = e.currentTarget;
