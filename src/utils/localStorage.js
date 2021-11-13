@@ -6,9 +6,7 @@ let add = (city) => {
 
 let remove = (city) => {
   let cityArr = JSON.parse(window.localStorage.getItem("city")) || [];
-  cityArr = [
-    ...cityArr.filter((el) => city.toLowerCase() !== el.name.toLowerCase()),
-  ];
+  cityArr = [...cityArr.filter((el) => city !== el)];
 
   window.localStorage.setItem("city", JSON.stringify(cityArr));
 };
