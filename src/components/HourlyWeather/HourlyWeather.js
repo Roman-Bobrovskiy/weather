@@ -4,6 +4,7 @@ import actionsTypes from "../../redux/weather/weatherActions";
 
 import requests from "../../utils/request";
 import url from "../../utils/path.json";
+import localStorage from "../../utils/localStorage";
 
 import { v4 as uuidv4 } from "uuid";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
@@ -12,26 +13,42 @@ import timeCounter from "../../utils/getTime";
 import Arrow from "../Arrow/Arrow";
 import TempBox from "../../components/TempBox/TempBox";
 import scroll from "../../utils/hScroll";
-import CurrentWeather from "../CurrentWeather/CurrentWeather";
 
 import styles from "./HourlyWeather.module.css";
 
-function CityPageHorly({ id, cityData, card, pageWeather, err, loading }) {
+function CityPageHorly({
+  id,
+  cityData,
+  card,
+  pageWeather,
+  handleSubmit,
+  err,
+  loading,
+}) {
   useEffect(() => {
+    let localStorageData = JSON.parse(window.localStorage.getItem("city"));
+    localStorageData.map((obj) => handleSubmit({ ...obj }));
+    id && localStorage.addCityPage(id);
+  }, [handleSubmit, id]);
+
+  useEffect(() => {
+    let lsId = JSON.parse(window.localStorage.getItem("cityData"));
     card.map(
       (obj) =>
-        id === obj.id &&
+        lsId === obj.id &&
         cityData.length === 0 &&
         requests
           .getCityPageData(obj.coord.lon, obj.coord.lat)
           .then(loading(true))
-          .then((elem) => pageWeather({ ...elem.data, name: obj.name }))
+          .then((elem) => pageWeather({ ...elem.data, name: obj.name, id: id }))
           .catch((error) => err(error.message))
           .finally(() => loading(false))
     );
   }, [pageWeather, id, card, cityData.length, err, loading]);
 
-  useEffect(() => pageWeather([]), [pageWeather]);
+  useEffect(() => {
+    pageWeather([]);
+  }, [pageWeather]);
 
   return (
     <>
@@ -80,6 +97,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   pageWeather: actionsTypes.cityPageWeather,
+  handleSubmit: actionsTypes.getCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
 };

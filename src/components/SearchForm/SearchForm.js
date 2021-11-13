@@ -6,7 +6,7 @@ import styles from "./SearchForm.module.css";
 
 import ModalWindow from "../Modal/ModalWindow";
 
-function SearchForm({ state, handleSubmit, err, loading }) {
+function SearchForm({ handleSubmit, err, loading }) {
   const [text, setText] = useState("");
 
   useEffect(() => {
