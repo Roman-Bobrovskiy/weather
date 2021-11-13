@@ -1,0 +1,20 @@
+.wrapCurrentWeather {
+  width: 80%;
+  padding-top: 8vh;
+  color: white;
+  margin: 0 auto;
+}
+p {
+  margin: 0;
+}
+.cityName {
+  font-size: 2rem;
+}
+.currentTemp {
+  font-size: 5rem;
+}
+
+.boxSun {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,43 @@
+.wrapInfoBox {
+  color: white;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.infoContainer {
+  margin-top: 1rem;
+  list-style-type: none;
+  padding: 0;
+}
+
+.infoItems {
+  font-size: 1.5rem;
+  margin: 1.5rem auto;
+  display: flex;
+  align-items: center;
+}
+.infoSvgImg {
+  margin-right: 0.5rem;
+}
+
+.infoImg {
+  width: 26px;
+}
+
+@media (max-width: 767px) {
+  .wrapInfoBox {
+    justify-content: center;
+    margin: 1rem auto;
+  }
+  .infoItems {
+    font-size: 1.2rem;
+    margin: 0;
+    justify-content: center;
+  }
+  .infoContainer {
+    margin: 0;
+  }
+}

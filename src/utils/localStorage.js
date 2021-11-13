@@ -13,7 +13,7 @@ let remove = (city) => {
   window.localStorage.setItem("city", JSON.stringify(cityArr));
 };
 
-let addCityPage = (obj) => {
+let addCityId = (obj) => {
   let cityPage = JSON.parse(window.localStorage.getItem("cityData")) || [];
   cityPage = obj;
   window.localStorage.setItem("cityData", JSON.stringify(cityPage));
@@ -22,6 +22,6 @@ let addCityPage = (obj) => {
 let localStorage = {
   add,
   remove,
-  addCityPage,
+  addCityId,
 };
 export default localStorage;

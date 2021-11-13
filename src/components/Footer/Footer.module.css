@@ -6,11 +6,35 @@
   bottom: 0;
   align-items: center;
   justify-content: center;
-  background: antiquewhite;
+  background: gray;
+  background: transparent;
   background-size: cover;
   background-image: url(../../assets/background_current-weather-cloudy_380x750.jpg);
 }
 .footerText {
   color: white;
   margin: 0;
+}
+
+@media (max-width: 767px) {
+  .wrapFooter {
+    height: 7vh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .wrapFooter {
+    height: 6vh;
+  }
+}
+@media (max-width: 767px) {
+  .wrapFooter {
+    height: 7vh;
+  }
+}
+
+@media (max-width: 320px) {
+  .wrapFooter {
+    height: 4vh;
+  }
 }

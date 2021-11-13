@@ -12,13 +12,17 @@ export default function CityPage(props) {
     <>
       <header>
         <div className={styles.wrapHeader}>
-          <span>weather forecast</span>
+          <span>Weather forecast</span>
         </div>
       </header>
       <main>
-        <CurrentWeather />
-        <HorlyWeather id={props.location.id} />
-        <InfoBox />
+        <div className={styles.wrapMain}>
+          <CurrentWeather />
+          <div className={styles.separator} />
+          <HorlyWeather id={props.location.id} />
+          <div className={styles.separator} />
+          <InfoBox />
+        </div>
       </main>
       <Footer />
     </>

@@ -34,7 +34,6 @@ let cityWeatherData = (state = initialState.card, { type, payload }) => {
 let cityPageData = (state = initialState.cityData, { type, payload }) => {
   switch (type) {
     case actionsTypes.CITY_PAGE_WEATHER:
-      // localStorage.addCityPage(payload);
       return payload;
 
     default:

@@ -28,7 +28,7 @@ function CityPageHorly({
   useEffect(() => {
     let localStorageData = JSON.parse(window.localStorage.getItem("city"));
     localStorageData.map((obj) => handleSubmit({ ...obj }));
-    id && localStorage.addCityPage(id);
+    id && localStorage.addCityId(id);
   }, [handleSubmit, id]);
 
   useEffect(() => {
@@ -61,10 +61,10 @@ function CityPageHorly({
           {cityData.length !== 0 &&
             cityData.hourly.map((elem) => (
               <ul key={uuidv4()} className={styles.hourlyWeatherCard}>
-                <li className={styles.cardItem}>
+                <li className={styles.cardList}>
                   {timeCounter.timeWeekDay(elem.dt)}
                 </li>
-                <li className={styles.cardItem}>
+                <li className={styles.cardList}>
                   <img
                     src={url.imgUrl + elem.weather[0].icon + ".png"}
                     alt={elem.weather[0].main}
@@ -73,14 +73,14 @@ function CityPageHorly({
                 <li className={styles.boxTempCardItem}>
                   <TempBox temp={getTempInCelsius(elem.temp)} />
                 </li>
-                <li className={styles.cardItem}>
+                <li className={styles.cardList}>
                   Feels like {getTempInCelsius(elem.feels_like)} °C
                 </li>
-                <li className={styles.cardItem}>
+                <li className={styles.cardList}>
                   <Arrow deg={elem.wind_deg} />
                   {wind.speed(elem.wind_speed)} m/s
                 </li>
-                <li className={styles.cardItem}>
+                <li className={styles.cardList}>
                   gusts to {wind.speed(elem.wind_gust)} m/s
                 </li>
               </ul>

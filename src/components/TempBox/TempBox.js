@@ -13,7 +13,7 @@ export default function TempBox({ temp }) {
         height: "max-content",
         bottom: `${temp / 1.7}px`,
         left: "0",
-        border: "1px solid black",
+        border: "1px solid rgba(0, 0, 0, 0.125)",
         display: "flex",
         background:
           temp > 0
@@ -24,7 +24,7 @@ export default function TempBox({ temp }) {
         position: "relative",
         height: "max-content",
         bottom: `${temp / 1.7}px`,
-        border: `1px solid black`,
+        border: `1px solid rgba(0, 0, 0, 0.125)`,
         display: "flex",
         background:
           temp > 0
