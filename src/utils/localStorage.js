@@ -1,6 +1,6 @@
 let add = (city) => {
   let cityArr = JSON.parse(window.localStorage.getItem("city")) || [];
-  cityArr = [...cityArr.filter((el) => el.name !== city.name), city];
+  cityArr = [...cityArr.filter((el) => el !== city), city];
   window.localStorage.setItem("city", JSON.stringify(cityArr));
 };
 

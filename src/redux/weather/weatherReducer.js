@@ -12,7 +12,7 @@ const initialState = {
 let cityWeatherData = (state = initialState.card, { type, payload }) => {
   switch (type) {
     case actionsTypes.ADD_CITY:
-      localStorage.add(payload);
+      localStorage.add(payload.name);
 
       return [...state.filter((obj) => obj.name !== payload.name), payload];
 

@@ -5,7 +5,6 @@ import actionsTypes from "../../redux/weather/weatherActions";
 
 import requests from "../../utils/request";
 import url from "../../utils/path.json";
-import localStorage from "../../utils/localStorage";
 
 import { v4 as uuidv4 } from "uuid";
 import { getTempInCelsius } from "../../utils/getTempInCelsius";
@@ -17,28 +16,12 @@ import scroll from "../../utils/hScroll";
 
 import styles from "./HourlyWeather.module.css";
 
-function CityPageHorly({
-  id,
-  cityData,
-  card,
-  pageWeather,
-  handleSubmit,
-  err,
-  loading,
-}) {
-  // get local storage data for city page
-  useEffect(() => {
-    let localStorageData = JSON.parse(window.localStorage.getItem("city"));
-    localStorageData.map((obj) => handleSubmit({ ...obj }));
-    id && localStorage.addCityId(id);
-  }, [handleSubmit, id]);
-
+function CityPageHorly({ id, cityData, card, pageWeather, err, loading }) {
   //get data object for city page
   useEffect(() => {
-    let lsId = JSON.parse(window.localStorage.getItem("cityData"));
     card.map(
       (obj) =>
-        lsId === obj.id &&
+        id === obj.id &&
         cityData.length === 0 &&
         requests
           .getCityPageData(obj.coord.lon, obj.coord.lat)
@@ -111,7 +94,6 @@ CityPageHorly.propTypes = {
   id: PropTypes.number,
   card: PropTypes.array,
   pageWeather: PropTypes.func.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
   err: PropTypes.func.isRequired,
   loading: PropTypes.func.isRequired,
 };
