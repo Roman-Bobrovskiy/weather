@@ -52,3 +52,8 @@
 span {
   justify-content: center;
 }
+@media (max-width: 767px) {
+  .wrapHourlyWeather {
+    width: 90%;
+  }
+}

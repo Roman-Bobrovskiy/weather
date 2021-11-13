@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 
@@ -25,12 +26,14 @@ function CityPageHorly({
   err,
   loading,
 }) {
+  // get local storage data for city page
   useEffect(() => {
     let localStorageData = JSON.parse(window.localStorage.getItem("city"));
     localStorageData.map((obj) => handleSubmit({ ...obj }));
     id && localStorage.addCityId(id);
   }, [handleSubmit, id]);
 
+  //get data object for city page
   useEffect(() => {
     let lsId = JSON.parse(window.localStorage.getItem("cityData"));
     card.map(
@@ -46,11 +49,13 @@ function CityPageHorly({
     );
   }, [pageWeather, id, card, cityData.length, err, loading]);
 
+  //clean state
   useEffect(() => {
     pageWeather([]);
   }, [pageWeather]);
 
   return (
+    //body hourly weather box
     <>
       <div className={styles.wrapHourlyWeather}>
         <div
@@ -100,6 +105,15 @@ let mapDispatchToProps = {
   handleSubmit: actionsTypes.getCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
+};
+
+CityPageHorly.propTypes = {
+  id: PropTypes.number,
+  card: PropTypes.array,
+  pageWeather: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  err: PropTypes.func.isRequired,
+  loading: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CityPageHorly);

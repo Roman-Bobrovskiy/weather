@@ -7,6 +7,7 @@ import styles from "./CurrentWeather.module.css";
 
 function CurrentWeather({ cityData }) {
   return (
+    // current weather for city page (up part)
     <>
       {cityData.length !== 0 && (
         <div className={styles.wrapCurrentWeather}>

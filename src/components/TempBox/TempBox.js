@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function TempBox({ temp }) {
+  //change the position and color of the block depending on the temperature
   let liStyle;
   liStyle = {
     width: "100%",
@@ -38,3 +40,7 @@ export default function TempBox({ temp }) {
     </div>
   );
 }
+
+TempBox.propTypes = {
+  temp: PropTypes.number.isRequired,
+};

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import requests from "../../utils/request";
@@ -9,6 +10,7 @@ import ModalWindow from "../Modal/ModalWindow";
 function SearchForm({ handleSubmit, err, loading }) {
   const [text, setText] = useState("");
 
+  //get local stoeage data for cards
   useEffect(() => {
     let localStorageData =
       JSON.parse(window.localStorage.getItem("city")) || [];
@@ -19,6 +21,7 @@ function SearchForm({ handleSubmit, err, loading }) {
     setText(event.target.value);
   };
 
+  //add new cards
   let onhandleSubmit = (event) => {
     loading(true);
     event.preventDefault();
@@ -32,6 +35,7 @@ function SearchForm({ handleSubmit, err, loading }) {
   };
 
   return (
+    // search
     <>
       <ModalWindow />
       <form className={styles.searchFrom} onSubmit={onhandleSubmit}>
@@ -61,6 +65,12 @@ let mapDispatchToProps = {
   handleSubmit: actionsTypes.getCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
+};
+
+SearchForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  err: PropTypes.func.isRequired,
+  loading: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
 import Modal from "react-bootstrap/Modal";
@@ -26,6 +27,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = {
   hendleChangeError: actionsTypes.error,
+};
+
+ModalWindow.propTypes = {
+  hendleChangeError: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalWindow);

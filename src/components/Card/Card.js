@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import actionsTypes from "../../redux/weather/weatherActions";
@@ -23,6 +24,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
   const [check, setСheck] = useState("");
   const [update, setUpdate] = useState(false);
 
+  //card update
   let handleChangeUpdate = (city, event) => {
     setUpdate(true);
     event.preventDefault();
@@ -33,7 +35,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
       .catch((error) => err(true))
       .finally(() => setUpdate(false));
   };
-
+  //remove card
   let handleChangeRemove = (city, event) => {
     event.preventDefault();
     localStorage.remove(city);
@@ -41,6 +43,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
   };
 
   return (
+    //card body
     state.weather.card.length !== 0 && (
       <>
         <Container className={styles.cardContainer}>
@@ -201,6 +204,14 @@ let mapDispatchToProps = {
   handleRemove: actionsTypes.removeCityData,
   err: actionsTypes.error,
   loading: actionsTypes.loading,
+};
+
+Cards.propTypes = {
+  state: PropTypes.object.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  err: PropTypes.func.isRequired,
+  city: PropTypes.string,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cards);

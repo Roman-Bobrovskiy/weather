@@ -6,6 +6,7 @@ import getTime from "../../utils/getTime";
 import styles from "./InfoBox.module.css";
 
 function InfoBox({ cityData }) {
+  // current weather for city page (botton part)
   return (
     <>
       {cityData.length !== 0 && (

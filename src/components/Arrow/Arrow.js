@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export default function Arrow({ deg }) {
   return (
@@ -17,3 +18,7 @@ export default function Arrow({ deg }) {
     </svg>
   );
 }
+
+Arrow.propTypes = {
+  deg: PropTypes.number.isRequired,
+};
