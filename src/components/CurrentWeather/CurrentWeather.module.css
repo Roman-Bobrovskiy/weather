@@ -18,6 +18,3 @@ p {
   display: flex;
   justify-content: space-between;
 }
-.svgArrow {
-  -webkit-transform: rotate(180deg);
-}

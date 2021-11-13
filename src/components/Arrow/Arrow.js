@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 export default function Arrow({ deg }) {
   return (
     <svg
-      className="svgArrow"
-      xmlns="http://www.w3.org/2000/svg"
       width="20px"
       height="20px"
       viewBox="0 0 16 16"
