@@ -1,5 +1,5 @@
 {
-  "apiCall": "http://api.openweathermap.org/data/2.5/weather",
+  "apiCall": "https://api.openweathermap.org/data/2.5/weather",
   "query": "?q=",
   "dailyCall": "https://api.openweathermap.org/data/2.5/onecall?",
   "daily": "&exclude=daily",
