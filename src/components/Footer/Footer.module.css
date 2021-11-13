@@ -2,7 +2,7 @@
   display: grid;
   width: 100%;
   position: fixed;
-  height: fit-content;
+  /* height: fit-content; */
   bottom: 0;
   align-items: center;
   justify-content: center;
