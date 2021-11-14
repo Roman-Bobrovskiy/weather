@@ -1,7 +1,0 @@
-/* :root {
-  --rotate: 90deg;
-} */
-.imgSvg {
-  -webkit-transform: rotate(var(--rotate), 90);
-  transform: rotate(var(--rotate), 90);
-}

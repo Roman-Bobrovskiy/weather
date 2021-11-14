@@ -59,7 +59,7 @@ function Cards({ state, handleUpdate, handleRemove, err }) {
                 }}
               >
                 <Card className={styles.card} key={e.id}>
-                  {state.weather.loading ? (
+                  {state.weather.loading && state.weather.card ? (
                     <Spinner animation="grow" variant="info" />
                   ) : (
                     <Card.Body>
